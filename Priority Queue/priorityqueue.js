@@ -19,9 +19,31 @@ class PriorityQueue {
 				}
 			}
 			if(!found) this.list.push(item);
-			
 		}
 	}
 
-	dequeue = () => this.list.shift();
+	dequeue = () => {
+		if(this.isEmpty()) {
+			return "List is Empty";
+		}
+	 	
+	 	return this.list.shift();
+	}
+
+	front = () => {
+		if(this.isEmpty()) {
+			return "List is Empty";
+		}
+
+		return this.list[0];
+	} 
+
+	rear = () => {
+		if(this.isEmpty()) {
+			return "List is Empty";
+		}
+
+		return this.list[this.list.length -1];
+	}
+	
 }
