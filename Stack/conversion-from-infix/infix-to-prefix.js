@@ -20,38 +20,42 @@ class Stack {
   }
 }
 
-const infixToPostfix = (infixString) => {
+const infixToPrefix = (infixString) => {
+  const revInfixString = infixString.split("").reverse();
+  revInfixString.forEach((char, index) => {
+    if (char === ")") revInfixString[index] = "(";
+    if (char === "(") revInfixString[index] = ")";
+  });
   // create empty stack
   let stack = new Stack();
   // create empty result string
-  let postfixStr = "";
-  // convert string into array
-  const infixStrArr = infixString.split("");
+  let prefixStr = "";
 
-  infixStrArr.forEach((char) => {
+  revInfixString.forEach((char) => {
     if ( (char >= "a" && char <= "z") || (char >= "A" && char <= "Z") || (char >= "0" && char <= "9") ) {
-      postfixStr += char;
+      prefixStr += char;
     } else if (char === "(") {
       stack.push(char);
     } else if (char === ")") {
       while (stack.top() !== "(") {
-        postfixStr += stack.pop();
+        prefixStr += stack.pop();
       }
       stack.pop();
     } else if ( char === "^" || char === "/" || char === "*" || char === "+" || char === "-" ) {
       while ( char !== "^" && !stack.isEmpty() && getPrecendence(char) <= getPrecendence(stack.top()) ) {
-        postfixStr += stack.pop();
+        prefixStr += stack.pop();
       }
       stack.push(char);
     }
   });
 
   while (!stack.isEmpty()) {
-    postfixStr += stack.pop();
+    prefixStr += stack.pop();
   }
 
-  return postfixStr;
+  return prefixStr.split("").reverse("").join("");
 };
+
 
 const getPrecendence = (operator) => {
   switch (operator) {
