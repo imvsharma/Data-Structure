@@ -20,22 +20,25 @@ class Stack {
   }
 }
 
-const prefixToInfix = (prefixString) => {
-  let stack = new Stack();
-  const revPrefixString = prefixString.split("").reverse();
 
-  revPrefixString.forEach((char) => {
+const prefixToInfix = (prefixString) => {
+  const postfixStr = prefixString.split("").reverse();
+  let stack = new Stack();
+  const postfixStrArr = postfixString.split("");
+  postfixStrArr.forEach((char, index) => {
     if (!isOperator(char)) {
       stack.push(char);
-    } else {
-      let operand1 = stack.pop();
-      let operand2 = stack.pop();
-      const str = `${operand1}${operand2}${char}`;
-      stack.push(str);
+    } else if (isOperator(char)) {
+      let str1 = stack.pop();
+      let str2 = stack.pop();
+      const newStr = `(${str1}${char}${str2})`;
+      stack.push(newStr);
     }
   });
-  return stack.top();
+  return stack.top().split().reverse().join("");
 };
+
+
 
 const isOperator = (char) => {
   if (
