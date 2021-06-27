@@ -48,3 +48,7 @@ const isOperator = (char) => {
     return true;
   return false;
 };
+
+console.log(prefixToInfix("*-A/BC-/AKL"));
+
+//output: ABC/-AK/L-*

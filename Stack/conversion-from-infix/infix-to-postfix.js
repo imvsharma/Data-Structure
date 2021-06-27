@@ -67,3 +67,7 @@ const getPrecendence = (operator) => {
       return 0;
   }
 };
+
+console.log(infixToPostfix("a+b*(c^d-e)^(f+g*h)-i"));
+
+// output : abcd^e-fgh*+^*+i-

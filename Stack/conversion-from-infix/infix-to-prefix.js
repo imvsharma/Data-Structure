@@ -71,3 +71,7 @@ const getPrecendence = (operator) => {
       return 0;
   }
 };
+
+console.log(infixToPrefix("(A - B/C) * (A/K-L)"));
+
+// output : *-A/BC-/AKL

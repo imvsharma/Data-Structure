@@ -24,8 +24,7 @@ class Stack {
 const prefixToInfix = (prefixString) => {
   const postfixStr = prefixString.split("").reverse();
   let stack = new Stack();
-  const postfixStrArr = postfixString.split("");
-  postfixStrArr.forEach((char, index) => {
+  postfixStr.forEach((char, index) => {
     if (!isOperator(char)) {
       stack.push(char);
     } else if (isOperator(char)) {
@@ -51,3 +50,7 @@ const isOperator = (char) => {
     return true;
   return false;
 };
+
+console.log(prefixToInfix("*-A/BC-/AKL"));
+
+//output: ((A-(B/C))*((A/K)-L))

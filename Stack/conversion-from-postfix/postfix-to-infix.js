@@ -30,7 +30,7 @@ const PostfixToInfix = (postfixString) => {
     } else if (isOperator(char)) {
       let str1 = stack.pop();
       let str2 = stack.pop();
-      const newStr = `(${str1}${char}${str2})`;
+      const newStr = `(${str2}${char}${str1})`;
       stack.push(newStr);
     }
   });
@@ -49,3 +49,5 @@ const isOperator = (char) => {
     return true;
   return false;
 };
+
+console.log(PostfixToInfix("ab*c+"));

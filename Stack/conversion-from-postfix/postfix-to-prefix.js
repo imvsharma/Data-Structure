@@ -26,7 +26,6 @@ const postfixToPrefix = (postfixString) => {
   arr.forEach((char) => {
     if (!isOperator(char)) {
       stack.push(char);
-      console.log(stack);
     } else {
       let operand1 = stack.pop();
       let operand2 = stack.pop();
@@ -48,3 +47,7 @@ const isOperator = (char) => {
     return true;
   return false;
 };
+
+console.log(postfixToPrefix("ABC/-AK/L-*"));
+
+//output: *-A/BC-/AKL
